@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table 1 and Table 2</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+
+<h2>Table 1</h2>
+
+<table id="table1">
+  <tr>
+    <th>Index#</th>
+    <th>Value</th>
+  </tr>
+
+</table>
+
+<h2>Table 2</h2>
+
+<table id="table2">
+  <tr>
+    <th>Category</th>
+    <th>Value</th>
+  </tr>
+
+</table>
+<script>
+
+    var DatafromCSV = `Index,Value
+A1,41
+A2,18
+A3,21
+A4,63
+A5,2
+A6,53
+A7,5
+A8,57
+A9,60
+A10,93
+A11,28
+A12,3
+A13,90
+A14,39
+A15,80
+A16,88
+A17,49
+A18,60
+A19,26
+A20,28`;
+
+    var lines = DatafromCSV.split('\n');
+    var table1Data = {};
+    for (var i = 1; i < 21; i++) {
+        var parts = lines[i].split(',');
+        table1Data[parts[0]] = parseInt(parts[1]);
+    }
+
+    var alphaValue = table1Data['A5'] + table1Data['A20'];
+    var betaValue = Math.floor(table1Data['A15'] / table1Data['A7']);
+    var charlieValue = table1Data['A13'] * table1Data['A12'];
+
+    var table1 = document.getElementById('table1');
+    for (var index in table1Data) {
+        var row = table1.insertRow(-1);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        cell1.textContent = index;
+        cell2.textContent = table1Data[index];
+    }
+
+    var table2 = document.getElementById('table2');
+    var row1 = table2.insertRow(-1);
+    var cell1_1 = row1.insertCell(0);
+    var cell1_2 = row1.insertCell(1);
+    cell1_1.textContent = 'Alpha';
+    cell1_2.textContent = alphaValue;
+
+    var row2 = table2.insertRow(-1);
+    var cell2_1 = row2.insertCell(0);
+    var cell2_2 = row2.insertCell(1);
+    cell2_1.textContent = 'Beta';
+    cell2_2.textContent = betaValue;
+
+    var row3 = table2.insertRow(-1);
+    var cell3_1 = row3.insertCell(0);
+    var cell3_2 = row3.insertCell(1);
+    cell3_1.textContent = 'Charlie';
+    cell3_2.textContent = charlieValue;
+</script>
+
+</body>
+</html>
